@@ -1,0 +1,115 @@
+#TASK MANAGER
+    Program pro správu úkolů uživatele.
+    Ovládání skrze CLI, požadavek na nainstalovaný Python3.
+    Možnosti programu:
+        - přidat nový úkol
+        - vypsat všechny úkoly
+        - odstranit zvolený úkol
+        - korektně ukončit program
+
+#Výsledky testů
+    1. funkce "hlavni_menu"
+        1.1 pozitivní testy PASS
+        1.2 negativní testy PASS
+    2. funkce "pridat_ukol"
+        2.1 pozitivní testy PASS
+        2.2 negativní testy PASS
+        2.2 Co je validní vstup? "Koupit - <°)))<", funkce neošetřuje "nesmyslné" zadání. FAIL
+    3. funkce "zobrazit_ukoly"
+        3.1 pozitivní testy PASS
+    4. funkce "odstranit_ukol"
+        4.1 pozitivní testy PASS
+        4.2 negativní testy PASS
+    5. funkce "odstranit_ukol"
+        5.1 pozitivní testy PASS
+
+1. funkce "hlavni_menu":
+    Funkce hlavního menu, která poskytuje možnosti pro přidání, zobrazení a odstranění úkolu.
+    Pokud uživatel zadá neplatnou volbu, program ho upozorní a nechá uživatele opakovat znovu volbu.
+    
+    Po spuštění programu se vypíše:
+        Správce úkolů - Hlavní menu
+        1. Přidat nový úkol
+        2. Zobrazit všechny úkoly
+        3. Odstranit úkol
+        4. Konec programu
+        Vyberte možnost (1-4):
+
+    1.1 Pozitivní a okrajové testy:
+        Při zadání možnosti "1", vrací:
+            "Zadejte název úkolu:"
+        Při zadání možnosti "2", vrací:
+            "Seznam úkolů:"
+                "Aktuálně nemáte vytvořené žádné úkoly.", případně vypíše seznam již zadaných úkolů.
+        Při zadání možnosti "3", vrací:
+            "Seznam úkolů:"
+                "Aktuálně nemáte vytvořené žádné úkoly.", případně vrátí seznam úkolů ke smazání.
+        Při zadání možnosti "4", vrací:
+            "Konec programu." a následně se program ukončí.,
+
+    1.2 Negativní testy:
+        Při zadání celočíselné možnosti mimo uvedený rozsah, vrací:
+            "Neplatná hodnota! Zadejte hodnotu v rozsahu 1-4"
+        Ve všech ostatních případech, vrací:
+            "Neplatná hodnota! Zadejte hodnotu v rozsahu 1-4"
+        
+2. funkce "pridat_ukol":
+    Tato funkce umožňuje uživateli zadat název a popis nového úkolu a uložit jej do seznamu úkolů. 
+    Zde platí volba 1 v hlavním menu. Po zadání úkolu program pokračuje dál nabídkou hlavního menu. 
+    Při zadání prázdného vstupu do Zadejte název úkolu nebo Popis úkolu, 
+    program upozorní uživatele, že zadal prázdný vstup a nechá ho zadat název i popis znovu.
+
+    2.1 Pozitivní a okrajové testy:
+        Při zadání možnosti "1" v hlavním menu, vrací:
+            "Zadejte název úkolu:" po vyplnění a potvrzení si vyžádá další vstup "Zadejte popis úkolu:".
+            Po vyplnění vrací: "Úkol 'název úkolu' byl přidán." a přejde zpět na hlanví menu.
+
+    2.2 Negativní testy:
+        Při zadání možnosti "1" v hlavním menu, vrací:
+            "Zadejte název úkolu:" po potvrzení prázdného řetězce si vyžádá další vstup "Zadejte popis úkolu:".
+            Pokud nevyplníme jeden nebo oba vstupy, vrací:
+                "Zadejte platný vstup!" a následně si vyžádá opětovné vyplnění vstupů.
+
+3. funkce "zobrazit_ukoly":
+    Tato funkce zobrazuje všechny úkoly v seznamu. Zde platí volba 2 v hlavním menu. 
+    Po zobrazení úkolů program pokračuje dál nabídkou hlavního menu.
+
+    3.1 Pozitivní testy:
+        Při zadání možnosti "2", vrací:
+            "Seznam úkolů:"
+                "Aktuálně nemáte vytvořené žádné úkoly.", případně vypíše seznam již zadaných úkolů.
+            A následně přejde zpět na hlavní menu.
+
+4. funkce "odstranit_ukol":
+    Tato funkce uživateli umožňuje zadat číslo úkolu, který chce odstranit, a tento úkol odstranit. 
+    Zde platí volba 3 v hlavním menu. Po odstranění úkolu program pokračuje dál nabídkou hlavního menu. 
+    Zde je potřeba, aby uživatel viděl všechny uložené úkoly a při výběru neexistujícího úkolu byl upozorněn.
+
+    4.1 Pozitivní a okrajové testy:
+        Při zadání možnosti "3" v hlavním menu, vrací:
+            Pokud seznam úkolů neobsahuje data:
+                "Seznam úkolů:"
+                    "Aktuálně nemáte vytvořené žádné úkoly." a přejde zpět na hlavní menu.
+
+            Pokud seznam úkolů obsahuje data:
+                "Seznam úkolů:"
+                    "Vypíše seznam úkolů s pořadovým číslem" a vyžádá si vstup "Zadejte číslo úkolu, který chcete odstranit:"
+                        Po zadání čísla úkolu ze seznamu a následném potvrzení odstraní požadovaný úkol (viz funkce "zobrazit_ukoly"),
+                        vrací "Úkol 'název úkolu' byl odstaněn." a následně přejde zpět na hlavní menu.
+
+    4.2 Negativní testy:
+        Při zadání možnosti "3" v hlavním menu, vrací:
+            "Seznam úkolů:"
+                "Vypíše seznam úkolů s pořadovým číslem" a vyžádá si vstup "Zadejte číslo úkolu, který chcete odstranit:"
+                    Po zadání celočíselné kladné nebo záporné hodnoty, mimo uvedená pořadová čísla, vrací "Úloha 'číslo úlohy' nenalezena!",
+                    opět vypíše seznam úloh a vyžádá si vstup "Zadejte číslo úkolu, který chcete odstranit:"
+
+                    Po zadání jakékoliv jiné neceločíselné hodnoty vrací "Zadejte platné číslo úlohy.",
+                    opět vypíše seznam úloh a vyžádá si vstup "Zadejte číslo úkolu, který chcete odstranit:"
+
+5. funkce "konec_programu":
+    Pokud uživatel zadá volbu 4 v hlavním menu program se ukončí.
+
+    5.1 Pozitivní testy:
+        Při zadání možnosti "4" v hlavním menu, vrací:
+            "Konec programu." a následně se program ukončí.
